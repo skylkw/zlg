@@ -5,7 +5,7 @@ import { MessagePlugin } from 'tdesign-vue-next'
 
 // user alova instance
 export const alovaInstance = createAlova({
-  baseURL: '',
+  baseURL: '/api',
   statesHook: VueHook,
   requestAdapter: adapterFetch(),
   async responded(response, method) {

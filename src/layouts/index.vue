@@ -1,15 +1,15 @@
 <script setup lang="ts">
-  import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+  // import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+  // import {
+  //   DropdownMenu,
+  //   DropdownMenuContent,
+  //   DropdownMenuGroup,
+  //   DropdownMenuItem,
+  //   DropdownMenuSeparator,
+  //   DropdownMenuTrigger,
+  // } from '@/components/ui/dropdown-menu'
   import { useRouter } from 'vue-router'
 
-  import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuGroup,
-    DropdownMenuItem,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-  } from '@/components/ui/dropdown-menu'
   import {
     Sidebar,
     SidebarContent,
@@ -23,7 +23,7 @@
     SidebarRail,
     SidebarTrigger,
   } from '@/components/ui/sidebar'
-  import { BadgeCheck, Bell, Bot, ChevronsUpDown, CreditCard, LogOut, SquareTerminal } from 'lucide-vue-next'
+  import { Bot, SquareTerminal } from 'lucide-vue-next'
 
   import gear from './icon/gear.vue'
 
@@ -57,9 +57,9 @@
 </script>
 
 <template>
-  <div class="">
+  <div>
     <SidebarProvider>
-      <Sidebar collapsible="icon">
+      <Sidebar collapsible="icon" class="w-60">
         <SidebarHeader>
           <SidebarMenu>
             <SidebarMenuItem>
@@ -84,7 +84,7 @@
             </SidebarMenuItem>
           </SidebarMenu>
         </SidebarContent>
-        <SidebarFooter>
+        <!-- <SidebarFooter>
           <SidebarMenu>
             <SidebarMenuItem>
               <DropdownMenu>
@@ -131,7 +131,7 @@
               </DropdownMenu>
             </SidebarMenuItem>
           </SidebarMenu>
-        </SidebarFooter>
+        </SidebarFooter> -->
         <SidebarRail />
       </Sidebar>
       <SidebarInset>
@@ -146,7 +146,7 @@
         </header>
         <RouterView v-slot="{ Component }">
           <KeepAlive>
-            <component :is="Component" class="px-4"/>
+            <component :is="Component" class="px-4" />
           </KeepAlive>
         </RouterView>
       </SidebarInset>
