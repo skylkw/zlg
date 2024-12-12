@@ -54,7 +54,8 @@
       if (eventSource) {
         eventSource.close()
       }
-      eventSource = new EventSource(`http://localhost:8000/sse/${chn}`)
+      // eventSource = new EventSource(`http://localhost:8000/sse/${chn}`)
+      eventSource = new EventSource(`/sse/${chn}`)
       eventSource.onopen = (event) => {
         console.log('SSE connection opened for motor', event)
       }

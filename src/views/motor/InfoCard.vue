@@ -39,7 +39,3 @@
      </span>
   </div>
 </template>
-
-<style scoped>
-  /* 可根据需要添加更多自定义样式 */
-</style>
