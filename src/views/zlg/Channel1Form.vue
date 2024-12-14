@@ -15,26 +15,26 @@
 
   const appStore = useAppStore()
 
-  const channel1Schema = toTypedSchema(
+  const channelSchema = toTypedSchema(
     z.object({
-      baudRate1: z.string({ required_error: '请选择波特率' }),
-      canType1: z.string({ required_error: '请选择CAN类型' }),
-      filterMode1: z.string(),
+      baudRate: z.string({ required_error: '请选择波特率' }),
+      canType: z.string({ required_error: '请选择CAN类型' }),
+      filterMode: z.string(),
     })
   )
 
-  const { handleSubmit: handleChannel1Submit, resetForm: resetChannel1Form } = useForm({
-    validationSchema: channel1Schema,
+  const { handleSubmit: handleChannelSubmit, resetForm: resetChannelForm } = useForm({
+    validationSchema: channelSchema,
     initialValues: {
-      baudRate1: '500000',
-      canType1: '0',
-      filterMode1: 'None',
+      baudRate: '500000',
+      canType: '0',
+      filterMode: 'None',
     },
   })
 
-  const onChannel1Submit = handleChannel1Submit(async (values) => {
+  const onChannelSubmit = handleChannelSubmit(async (values) => {
     if (!appStore.channel1Status) {
-      await openChannelRequest(1, Number(values.baudRate1), Number(values.canType1))
+      await openChannelRequest(1, Number(values.baudRate), Number(values.canType))
       appStore.channel1Status = true
     } else {
       await closeChannelRequest(1)
@@ -42,9 +42,9 @@
     }
   })
 
-  const channel1FormItems = [
+  const channelFormItems = [
     {
-      name: 'baudRate1',
+      name: 'baudRate',
       label: '波特率',
       placeholder: '选择波特率',
       defaultValue: '500000',
@@ -56,7 +56,7 @@
       required: true,
     },
     {
-      name: 'canType1',
+      name: 'canType',
       label: 'CAN类型',
       placeholder: '选择CAN类型',
       defaultValue: '0',
@@ -75,10 +75,10 @@
       <CardTitle>通道1控制</CardTitle>
     </CardHeader>
     <CardContent class="flex flex-col flex-1">
-      <form @submit.prevent="onChannel1Submit" class="flex flex-col flex-1">
+      <form @submit.prevent="onChannelSubmit" class="flex flex-col flex-1">
         <div class="flex flex-col gap-y-4 flex-1">
           <FormSelectField
-            v-for="field in channel1FormItems"
+            v-for="field in channelFormItems"
             :key="field.name"
             :name="field.name"
             :label="field.label"

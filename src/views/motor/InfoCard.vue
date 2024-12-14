@@ -33,7 +33,7 @@
     </div>
     <span
       :class="valueBgClass"
-      class="whitespace-nowrap overflow-hidden text-ellipsis px-2 py-1 text-accent/90 text-xs rounded-lg shadow-sm"
+      class="min-w-8 whitespace-nowrap overflow-hidden text-ellipsis px-2 py-1 text-accent/90 text-xs rounded-lg shadow-sm"
       title="{{ value }}">
       {{ value }} 
      </span>

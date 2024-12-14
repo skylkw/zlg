@@ -115,7 +115,7 @@
   const motorFormItems = [
     {
       type: 'select',
-      name: 'motorMode',
+      name: 'mode',
       label: '电机工作模式',
       placeholder: '选择电机工作模式',
       defaultValue: '2',
@@ -128,7 +128,7 @@
     },
     {
       type: 'input',
-      name: 'motorValue',
+      name: 'value',
       defaultValue: '0',
       label: '速度/扭矩值',
       placeholder: '输入速度/扭矩值',
@@ -136,7 +136,7 @@
     },
     {
       type: 'select',
-      name: 'motorGear',
+      name: 'gear',
       label: '挡位',
       placeholder: '选择挡位',
       defaultValue: '2',

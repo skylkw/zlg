@@ -15,26 +15,26 @@ const { send: closeChannelRequest } = useRequest(closeChannel, { immediate: fals
 
 const appStore = useAppStore()
 
-const channel0Schema = toTypedSchema(
+const channelSchema = toTypedSchema(
   z.object({
-    baudRate0: z.string({ required_error: '请选择波特率' }),
-    canType0: z.string({ required_error: '请选择CAN类型' }),
-    filterMode0: z.string(),
+    baudRate: z.string({ required_error: '请选择波特率' }),
+    canType: z.string({ required_error: '请选择CAN类型' }),
+    filterMode: z.string(),
   })
 )
 
-const { handleSubmit: handleChannel0Submit, resetForm: resetChannel0Form } = useForm({
-  validationSchema: channel0Schema,
+const { handleSubmit: handleChannelSubmit, resetForm: resetChannelForm } = useForm({
+  validationSchema: channelSchema,
   initialValues: {
-    baudRate0: '500000',
-    canType0: '0',
-    filterMode0: 'None',
+    baudRate: '500000',
+    canType: '0',
+    filterMode: 'None',
   },
 })
 
-const onChannel0Submit = handleChannel0Submit(async (values) => {
+const onChannelSubmit = handleChannelSubmit(async (values) => {
   if (!appStore.channel0Status) {
-    await openChannelRequest(0, Number(values.baudRate0), Number(values.canType0))
+    await openChannelRequest(0, Number(values.baudRate), Number(values.canType))
     appStore.channel0Status = true
   } else {
     await closeChannelRequest(0)
@@ -42,9 +42,9 @@ const onChannel0Submit = handleChannel0Submit(async (values) => {
   }
 })
 
-const channel0FormItems = [
+const channelFormItems = [
   {
-    name: 'baudRate0',
+    name: 'baudRate',
     label: '波特率',
     placeholder: '选择波特率',
     defaultValue: '500000',
@@ -56,7 +56,7 @@ const channel0FormItems = [
     required: true,
   },
   {
-    name: 'canType0',
+    name: 'canType',
     label: 'CAN类型',
     placeholder: '选择CAN类型',
     defaultValue: '0',
@@ -75,10 +75,10 @@ const channel0FormItems = [
       <CardTitle>通道0控制</CardTitle>
     </CardHeader>
     <CardContent class="flex flex-col flex-1">
-      <form @submit.prevent="onChannel0Submit" class="flex flex-col flex-1">
+      <form @submit.prevent="onChannelSubmit" class="flex flex-col flex-1">
         <div class="flex flex-col gap-y-4 flex-1">
           <FormSelectField
-            v-for="field in channel0FormItems"
+            v-for="field in channelFormItems"
             :key="field.name"
             :name="field.name"
             :label="field.label"

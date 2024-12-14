@@ -1,6 +1,6 @@
 import { alovaInstance } from '..'
 
-export interface SetMotorSettingsRequest {
+export interface MotorSettingsReq {
   mode: number // 0: FREE 1: 扭矩 2: 速度
   value: number
   gear: number // 0: N 1: R 2: D
@@ -35,12 +35,12 @@ export const disableMotor = (motorIndex: number) => {
 }
 
 // 设置电机速度
-export const setMotorSettings = (motorIndex: number, payload: SetMotorSettingsRequest) => {
+export const setMotorSettings = (motorIndex: number, payload: MotorSettingsReq) => {
   switch (motorIndex) {
     case 0:
-      return alovaInstance.Post('/set_motor_0_speed', payload)
+      return alovaInstance.Post('/set_motor_0_settings', payload)
     case 1:
-      return alovaInstance.Post('/set_motor_1_speed', payload)
+      return alovaInstance.Post('/set_motor_1_settings', payload)
     default:
       throw new Error('无效的电机索引')
   }
