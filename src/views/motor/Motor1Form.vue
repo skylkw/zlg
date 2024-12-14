@@ -56,9 +56,7 @@
       }
       // eventSource = new EventSource(`http://localhost:8000/sse/${chn}`)
       eventSource = new EventSource(`/sse/${chn}`)
-      eventSource.onopen = (event) => {
-        console.log('SSE connection opened for motor', event)
-      }
+      eventSource.onopen = (event) => {}
       eventSource.onmessage = (event) => {
         try {
           const data = JSON.parse(event.data)
@@ -96,6 +94,8 @@
     stopSSE(1)
     await disableMotorRequest(1)
     appStore.motor1Status = false
+    appStore.motor1Data.speed = 0
+    appStore.motor1Data.position = 0
   }
 
   // 表单提交处理
