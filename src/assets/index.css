@@ -91,8 +91,28 @@
     @apply bg-background text-foreground;
   }
   /* 设置激活状态下的 router-link 链接颜色 */
-.router-link-active {
-  @apply text-primary;
+  .router-link-active {
+    @apply text-primary;
+  }
 }
+
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
 }
+::view-transition-old(root) {
+  z-index: 1;
+}
+::view-transition-new(root) {
+  z-index: 9999;
+}
+.dark::view-transition-old(root) {
+  z-index: 9999;
+}
+.dark::view-transition-new(root) {
+  z-index: 1;
+}
+
 

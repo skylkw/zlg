@@ -8,12 +8,14 @@
   //   DropdownMenuSeparator,
   //   DropdownMenuTrigger,
   // } from '@/components/ui/dropdown-menu'
+
+  import { Button } from '@/components/ui/button'
+  import { Moon, Sun } from 'lucide-vue-next'
   import { useRouter } from 'vue-router'
 
   import {
     Sidebar,
     SidebarContent,
-    SidebarFooter,
     SidebarHeader,
     SidebarInset,
     SidebarMenu,
@@ -23,8 +25,8 @@
     SidebarRail,
     SidebarTrigger,
   } from '@/components/ui/sidebar'
+  import { isDark, toggleDark } from '@/lib/utils'
   import { Bot, SquareTerminal } from 'lucide-vue-next'
-
   import gear from './icon/gear.vue'
 
   const router = useRouter()
@@ -60,17 +62,13 @@
   <div>
     <SidebarProvider>
       <Sidebar collapsible="icon" class="w-60">
-        <SidebarHeader>
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton size="lg" as-child class="p-0">
-                <div>
-                  <component :is="data.title.logo" />
-                  <span class="text-lg font-semibold text-sidebar-foreground">{{ data.title.name }}</span>
-                </div>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          </SidebarMenu>
+        <SidebarHeader class="px-0">
+          <SidebarMenuButton as-child>
+            <div>
+              <component :is="data.title.logo" />
+              <span class="text-lg font-semibold text-sidebar-foreground">{{ data.title.name }}</span>
+            </div>
+          </SidebarMenuButton>
         </SidebarHeader>
         <SidebarContent>
           <SidebarMenu>
@@ -136,17 +134,21 @@
       </Sidebar>
       <SidebarInset>
         <header
-          class="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
-          <div class="flex w-full items-center gap-2 px-4">
+          class="flex h-12 shrink-0 items-center justify-between px-4 gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
+          <div class="flex items-center gap-2">
             <SidebarTrigger />
             <h1 class="text-lg font-semibold">
               {{ router.currentRoute.value.meta.title }}
             </h1>
           </div>
+          <Button @click="toggleDark" variant="outline" size="icon">
+            <Sun v-if="!isDark" />
+            <Moon v-else />
+          </Button>
         </header>
         <RouterView v-slot="{ Component }">
           <KeepAlive>
-            <component :is="Component" class="px-4" />
+            <component :is="Component" />
           </KeepAlive>
         </RouterView>
       </SidebarInset>

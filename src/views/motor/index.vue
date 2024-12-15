@@ -9,7 +9,7 @@
 </script>
 
 <template>
-  <div class="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 p-4">
+  <div class="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
     <Motor0Form />
     <Motor1Form />
     <MotorDisplay
