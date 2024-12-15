@@ -5,14 +5,12 @@
   import { GridComponent, LegendComponent, TitleComponent, TooltipComponent } from 'echarts/components'
   import { use } from 'echarts/core'
   import { CanvasRenderer } from 'echarts/renderers'
-  import { defineProps, onBeforeUnmount, onMounted, provide, ref, watchEffect } from 'vue'
+  import { defineProps, onBeforeUnmount, onMounted, provide, ref, watchEffect, watch } from 'vue'
   import VChart, { THEME_KEY } from 'vue-echarts'
+  import { isDark } from '@/lib/utils'
 
   // 引入 ECharts 组件
   use([CanvasRenderer, LineChart, TitleComponent, TooltipComponent, GridComponent, LegendComponent])
-
-  // 提供主题
-  provide(THEME_KEY, 'light')
 
   // 定义接收的 props
   const props = defineProps<{
@@ -164,6 +162,7 @@
     ],
   })
 
+
   // 最大数据点数
   const MAX_DATA_POINTS = 100
 
@@ -215,6 +214,7 @@
     clearInterval(intervalId)
   })
 
+
   watchEffect(() => {
     option.value.series[0].show = showMotor0Speed.value
     option.value.series[1].show = showMotor1Speed.value
@@ -229,7 +229,7 @@
       <CardTitle>折线图</CardTitle>
     </CardHeader>
     <CardContent>
-      <v-chart class="min-h-96" :option="option" autoresize />
+      <v-chart class="min-h-96" :option="option" autoresize :theme="isDark ? 'dark' : 'light'" />
     </CardContent>
   </Card>
 </template>

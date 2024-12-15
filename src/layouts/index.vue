@@ -1,13 +1,5 @@
 <script setup lang="ts">
-  // import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-  // import {
-  //   DropdownMenu,
-  //   DropdownMenuContent,
-  //   DropdownMenuGroup,
-  //   DropdownMenuItem,
-  //   DropdownMenuSeparator,
-  //   DropdownMenuTrigger,
-  // } from '@/components/ui/dropdown-menu'
+  import { Avatar, AvatarImage } from '@/components/ui/avatar'
 
   import { Button } from '@/components/ui/button'
   import { Moon, Sun } from 'lucide-vue-next'
@@ -24,19 +16,20 @@
     SidebarProvider,
     SidebarRail,
     SidebarTrigger,
+    SidebarFooter,
   } from '@/components/ui/sidebar'
   import { isDark, toggleDark } from '@/lib/utils'
   import { Bot, SquareTerminal } from 'lucide-vue-next'
   import gear from './icon/gear.vue'
+  import qinyi from '@/assets/qinyi.jpg'
 
   const router = useRouter()
 
-  // This is sample data.
   const data = {
     user: {
-      name: 'shadcn',
-      email: 'm@example.com',
-      avatar: '/avatars/shadcn.jpg',
+      name: '沁伊',
+      email: '1374714456@qq.com',
+      avatar: qinyi,
     },
     title: {
       name: '株齿电机控制上位机',
@@ -82,54 +75,16 @@
             </SidebarMenuItem>
           </SidebarMenu>
         </SidebarContent>
-        <!-- <SidebarFooter>
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <DropdownMenu>
-                <DropdownMenuTrigger as-child>
-                  <SidebarMenuButton
-                    size="lg"
-                    class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
-                    <Avatar class="h-8 w-8 rounded-lg">
-                      <AvatarImage :src="data.user.avatar" :alt="data.user.name" />
-                      <AvatarFallback class="rounded-lg">CN</AvatarFallback>
-                    </Avatar>
-                    <div class="grid flex-1 text-left text-sm leading-tight">
-                      <span class="truncate font-semibold">{{ data.user.name }}</span>
-                      <span class="truncate text-xs">{{ data.user.email }}</span>
-                    </div>
-                    <ChevronsUpDown class="ml-auto size-4" />
-                  </SidebarMenuButton>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent
-                  class="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
-                  side="bottom"
-                  align="end"
-                  :side-offset="4">
-                  <DropdownMenuGroup>
-                    <DropdownMenuItem>
-                      <BadgeCheck />
-                      Account
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>
-                      <CreditCard />
-                      Billing
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>
-                      <Bell />
-                      Notifications
-                    </DropdownMenuItem>
-                  </DropdownMenuGroup>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem>
-                    <LogOut />
-                    Log out
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </SidebarMenuItem>
-          </SidebarMenu>
-        </SidebarFooter> -->
+        <SidebarFooter class="px-0">
+          <SidebarMenuButton as-child >
+            <div>
+              <Avatar size="sm" class="w-8 h-8">
+                <AvatarImage :src="data.user.avatar" alt="{data.user.name}"  />
+              </Avatar>
+              <span class="text-sm font-semibold text-sidebar-foreground">{{ data.user.name }}</span>
+            </div>
+          </SidebarMenuButton>
+        </SidebarFooter>
         <SidebarRail />
       </Sidebar>
       <SidebarInset>
