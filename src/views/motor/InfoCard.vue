@@ -4,7 +4,7 @@
   // 定义 props 类型
   const props = defineProps<{
     label: string
-    value: string | number
+    value: string
   }>()
 </script>
 
@@ -14,7 +14,7 @@
     <div class="font-semibold tracking-wide truncate text-base">
       {{ label }}
     </div>
-    <span class="text-xs" title="{{ value }}">
+    <span class="text-xs" :title="value">
       {{ value }}
     </span>
   </div>
