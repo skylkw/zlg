@@ -16,6 +16,7 @@
   const props = defineProps<{
     motor0Data: MotorData
     motor1Data: MotorData
+    interval: number
   }>()
 
   // 控制折线显示的变量
@@ -206,7 +207,7 @@
 
   // 启动定时器
   onMounted(() => {
-    intervalId = window.setInterval(updateChartData, 1000) // 每秒更新一次
+    intervalId = setInterval(updateChartData, props.interval) // 每秒更新一次
   })
 
   // 清理定时器

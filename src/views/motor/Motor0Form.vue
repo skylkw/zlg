@@ -38,7 +38,7 @@
     initialValues: {
       mode: '2',
       value: '0',
-      gear: '2',
+      gear: '1',
       climb: '0',
       handBrake: '0',
       footBrake: '0',
@@ -143,8 +143,8 @@
       defaultValue: '2',
       options: [
         { value: '0', label: 'N' },
-        { value: '1', label: 'R' },
-        { value: '2', label: 'D' },
+        { value: '1', label: 'D' },
+        { value: '2', label: 'R' },
       ],
       required: true,
     },

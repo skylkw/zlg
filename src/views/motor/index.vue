@@ -16,13 +16,15 @@
       :motorId="0"
       motorLabel="电机0"
       :motorStatus="appStore.motor0Status"
-      :motorData="appStore.motor0Data" />
+      :motorData="appStore.motor0Data"
+      :interval="1000" />
     <MotorDisplay
       :motorId="1"
       motorLabel="电机1"
       :motorStatus="appStore.motor1Status"
-      :motorData="appStore.motor1Data" />
+      :motorData="appStore.motor1Data"
+      :interval="1000" />
 
-    <MotorLine :motor0Data="appStore.motor0Data" :motor1Data="appStore.motor1Data"/>
+    <MotorLine :motor0Data="appStore.motor0Data" :motor1Data="appStore.motor1Data" :interval="1000"/>
   </div>
 </template>
