@@ -49,37 +49,32 @@
   // 启动 SSE 连接
   let eventSource: EventSource | null = null
 
-  const startSSE = (chn: number) => {
-    if (chn === 0) {
-      if (eventSource) {
-        eventSource.close()
+  const startSSE = (chn: number, motorId: number) => {
+    if (eventSource) {
+      eventSource.close()
+    }
+    // eventSource = new EventSource(`http://localhost:8000/sse/${chn}/${motorId}`)
+    eventSource = new EventSource(`/sse/${chn}/${motorId}`)
+    eventSource.onopen = (event) => {}
+    eventSource.onmessage = (event) => {
+      try {
+        const data = JSON.parse(event.data)
+        Object.assign(appStore.motor0Data, data)
+      } catch (error) {
+        console.error('Error parsing SSE data for motor:', error)
       }
-      // eventSource = new EventSource(`http://localhost:8000/sse/${chn}`)
-      eventSource = new EventSource(`/sse/${chn}`)
-      eventSource.onopen = (event) => {
-      }
-      eventSource.onmessage = (event) => {
-        try {
-          const data = JSON.parse(event.data)
-          Object.assign(appStore.motor0Data, data)
-        } catch (error) {
-          console.error('Error parsing SSE data for motor:', error)
-        }
-      }
-      eventSource.onerror = (err) => {
-        console.error('SSE error for motor:', err)
-        eventSource?.close()
-      }
+    }
+    eventSource.onerror = (err) => {
+      console.error('SSE error for motor:', err)
+      eventSource?.close()
     }
   }
 
   // 关闭 SSE 连接
-  const stopSSE = (chn: number) => {
-    if (chn === 0) {
-      if (eventSource) {
-        eventSource.close()
-        eventSource = null
-      }
+  const stopSSE = () => {
+    if (eventSource) {
+      eventSource.close()
+      eventSource = null
     }
   }
 
@@ -87,12 +82,12 @@
   const enableMotorFunc = async () => {
     await enableMotorRequest(0)
     appStore.motor0Status = true
-    startSSE(0)
+    startSSE(0, 0)
   }
 
   // 关闭电机
   const disableMotorFunc = async () => {
-    stopSSE(0)
+    stopSSE()
     await disableMotorRequest(0)
     appStore.motor0Status = false
     appStore.motor0Data.speed = 0
@@ -196,7 +191,7 @@
   import { onBeforeUnmount } from 'vue'
 
   onBeforeUnmount(() => {
-    stopSSE(0)
+    stopSSE()
   })
 </script>
 

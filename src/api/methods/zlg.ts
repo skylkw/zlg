@@ -17,11 +17,12 @@ export const sendMessage = (chn: number, datas: Messages, eff: number, transmitT
   alovaInstance.Post('/send_message', { chn, datas, eff, transmitType })
 
 // 启动自动发送消息
-export const startAutoSendMessage = (chn: number, datas: number[], interval: number) =>
-  alovaInstance.Post('/start_auto_send_message', { chn, datas, interval })
+export const startAutoSendMessage = (chn: number, motorId: number, datas: number[], interval: number) =>
+  alovaInstance.Post('/start_auto_send_message', { chn, motorId, datas, interval })
 
 // 停止自动发送消息
-export const stopAutoSendMessage = (chn: number) => alovaInstance.Post('/stop_auto_send_message', { chn })
+export const stopAutoSendMessage = (chn: number, motorId: number) =>
+  alovaInstance.Post('/stop_auto_send_message', { chn, motorId })
 
 // 启动接收消息
 export const startReceiveMessage = (chn: number) => alovaInstance.Post('/start_receive_message', { chn })
